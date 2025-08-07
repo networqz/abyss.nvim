@@ -1,3 +1,7 @@
+-- leader key
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 -- editor
 vim.o.confirm = true -- raise a dialog on operations that would fail due to unsaved changes
 vim.o.scrolloff = 8 -- minimal number of screen lines above and belove sursor
@@ -6,9 +10,8 @@ vim.o.signcolumn = "yes" --- set signcolumn to be always visible
 vim.o.updatetime = 128 -- time to wait for swap file update in ms
 vim.o.timeoutlen = 256 -- time to wait for mapped sequence in ms
 
--- leader key
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.o.splitright = true -- vertical split window to the right
+vim.o.splitbelow = true -- horizontal split window to the bottom
 
 -- cursor
 vim.o.guicursor = "" -- set cursor to block in all modes
