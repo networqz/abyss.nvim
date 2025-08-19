@@ -3,22 +3,15 @@ return {
     branch = 'master',
     lazy = false,
     build = ":TSUpdate",
-    ensure_installed = {
-        "c",
-        "cpp",
-        "lua",
-        "vim",
-        "vimdoc",
-        "html",
-        "css",
-        "javascript",
-        "typescript",
-        "query",
-        "markdown",
-        "markdown_inline"
-    },
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
+    config = function()
+        require("nvim-treesitter.configs").setup({
+            ensure_installed = { "c", "cpp", "html", "css", "javascript", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+            sync_install = false,
+            auto_install = true,
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false
+            }
+        })
+    end
 }

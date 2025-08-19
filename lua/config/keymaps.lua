@@ -28,4 +28,4 @@ vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d", { desc = "delete into the abys
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "replace inner word" })
 
 -- temp keybinds
-vim.keymap.set("n", "<leader>f", "<CMD>Oil<CR>", { desc = "open file explorer" })
+vim.keymap.set("n", "-", "<CMD>Oil<CR>")
