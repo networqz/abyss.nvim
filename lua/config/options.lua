@@ -2,6 +2,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- variable
+vim.g.have_nerd_font = true -- change to false if not using nerd font
+
 -- editor
 vim.o.confirm = true -- raise a dialog on operations that would fail due to unsaved changes
 vim.o.scrolloff = 8 -- minimal number of screen lines above and belove sursor
