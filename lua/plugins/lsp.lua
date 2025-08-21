@@ -3,18 +3,43 @@ return {
     dependencies = {
         "mason-org/mason.nvim",
         "mason-org/mason-lspconfig.nvim",
-
-        "saghen/blink.cmp",
-
+        { "saghen/blink.cmp", version = "1.*" },
         { "folke/lazydev.nvim", ft = "lua" }
     },
     config = function()
         local servers = {
             clangd = {},
+            html = {},
+            cssls = {},
+            ts_ls = {},
             lua_ls = {}
         }
 
-        require("mason").setup()
+        require("mason").setup({})
+
+        require("blink.cmp").setup({
+            keymap = {
+                preset = "default"
+            },
+            appearance = {
+                nerd_font_variant = "mono"
+            },
+            completion = {
+                documentation = {
+                    auto_show = false
+                }
+            },
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer" }
+            },
+            fuzzy = {
+                implementation = "prefer_rust_with_warning"
+            },
+            signature = {
+                enabled = true
+            }
+        })
+
         require("mason-lspconfig").setup({
             ensure_installed = vim.tbl_keys(servers),
             handlers = {
@@ -29,9 +54,7 @@ return {
         require("lazydev").setup({
             library = {
                 {
-
                     path = "${3rd}/luv/library",
-
                     words = { "vim%.uv" }
                 }
             }
@@ -53,7 +76,6 @@ return {
 
                 text = {
                     [vim.diagnostic.severity.ERROR] = '󰅚 ',
-
                     [vim.diagnostic.severity.WARN] = '󰀪 ',
                     [vim.diagnostic.severity.INFO] = '󰋽 ',
                     [vim.diagnostic.severity.HINT] = '󰌶 '
