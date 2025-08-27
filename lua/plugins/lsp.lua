@@ -3,8 +3,14 @@ return {
     dependencies = {
         "mason-org/mason.nvim",
         "mason-org/mason-lspconfig.nvim",
-        { "saghen/blink.cmp", version = "1.*" },
-        { "folke/lazydev.nvim", ft = "lua" }
+        {
+            "folke/lazydev.nvim",
+            ft = "lua"
+        },
+        {
+            "saghen/blink.cmp",
+            version = "1.*"
+        }
     },
     config = function()
         local servers = {
