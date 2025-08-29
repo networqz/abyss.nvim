@@ -5,12 +5,13 @@ return {
         "mason-org/mason-lspconfig.nvim",
         {
             "folke/lazydev.nvim",
-            ft = "lua"
+            ft = "lua",
+            opts = {
+                library = {
+                    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                },
+            },
         },
-        {
-            "saghen/blink.cmp",
-            version = "1.*"
-        }
     },
     config = function()
         local servers = {
@@ -22,30 +23,6 @@ return {
         }
 
         require("mason").setup({})
-
-        require("blink.cmp").setup({
-            keymap = {
-                preset = "default"
-            },
-            appearance = {
-                nerd_font_variant = "mono"
-            },
-            completion = {
-                documentation = {
-                    auto_show = false
-                }
-            },
-            sources = {
-                default = { "lsp", "path", "snippets", "buffer" }
-            },
-            fuzzy = {
-                implementation = "prefer_rust_with_warning"
-            },
-            signature = {
-                enabled = true
-            }
-        })
-
         require("mason-lspconfig").setup({
             ensure_installed = vim.tbl_keys(servers),
             handlers = {
@@ -57,40 +34,27 @@ return {
             }
         })
 
-        require("lazydev").setup({
-            library = {
-                {
-                    path = "${3rd}/luv/library",
-                    words = { "vim%.uv" }
-                }
-            }
-        })
-
-        -- TODO: PLAY AROUND WITH DIAGNOSTIC MESSAGES TO GET THE DESIRED LOOK
-        -- Diagnostic Config
-        -- See :help vim.diagnostic.Opts
         vim.diagnostic.config({
             severity_sort = true,
-            float = {
-                border = 'rounded',
-                source = 'if_many'
-            },
-            underline = {
-                severity = vim.diagnostic.severity.ERROR
-            },
-            signs = vim.g.have_nerd_font and {
-
-                text = {
-                    [vim.diagnostic.severity.ERROR] = '󰅚 ',
-                    [vim.diagnostic.severity.WARN] = '󰀪 ',
-                    [vim.diagnostic.severity.INFO] = '󰋽 ',
-                    [vim.diagnostic.severity.HINT] = '󰌶 '
-                },
-            } or {},
+            underline = false,
+            update_in_insert = false,
             virtual_text = {
-                source = 'if_many',
-                spacing = 2
+                prefix = "▎",
+                spacing = 2,
+                source = "if_many"
             },
+            float = {
+                border = "rounded",
+                source = "if_many"
+            },
+            signs = {
+                text = {
+                    [vim.diagnostic.severity.ERROR] = "󰅚",
+                    [vim.diagnostic.severity.WARN]  = "󰀪",
+                    [vim.diagnostic.severity.INFO]  = "󰋽",
+                    [vim.diagnostic.severity.HINT]  = "󰌶"
+                }
+            }
         })
 
         -- add keymaps and custom highlight behaviour

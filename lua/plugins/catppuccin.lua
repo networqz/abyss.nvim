@@ -11,6 +11,7 @@ return {
                 solid = false
             }
         })
+
         vim.cmd.colorscheme("catppuccin-mocha")
     end
 }

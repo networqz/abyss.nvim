@@ -24,7 +24,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- note: sort and rebind later
 vim.keymap.set("x", "<leader>p", [["_dP]]) -- preserve yanked text when pasting over something
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "copy into system clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d", { desc = "delete into the abyss" })
+-- vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d", { desc = "delete into the abyss" }) // note: changed keybind find out which key to use for this
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "replace inner word" })
 
 -- temp keybinds
